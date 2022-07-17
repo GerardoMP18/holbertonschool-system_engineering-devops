@@ -1,0 +1,2 @@
+#Print the last 5 lines of "access.log".
+tail -5 access.log
