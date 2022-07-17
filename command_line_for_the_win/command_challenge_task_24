@@ -1,0 +1,7 @@
+#The file sum-me.txt has a list of numbers, one per line. Print the sum of these numbers.
+total=0
+for numero in $(cat sum-me.txt);
+do
+	total=$(($total+$numero))
+done
+echo $total
