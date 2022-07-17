@@ -1,0 +1,2 @@
+#Rename all files removing the extension from them in the current directory recursively.
+find * -type f | rename 's/\..*//'
