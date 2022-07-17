@@ -1,0 +1,3 @@
+#!/bin/bash
+#Extract all IP addresses from files that start with "access.log" printing one IP address per line.
+grep -r -o "^[.0-9]"*
