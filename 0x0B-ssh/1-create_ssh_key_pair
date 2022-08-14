@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# -b number bits
+# -f name of key private
+# -n name of key 
+ssh-keygen -b 4096 -f school -N betty
