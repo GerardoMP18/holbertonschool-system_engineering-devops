@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Update package
+sudo apt update
+# Install nginx
+sudo apt install -y nginx
+# Pass phrase to my html
+sudo echo 'Hello World' | sudo tee /var/www/html/index.nginx-debian.html
+# Start nginx service
+sudo service nginx start
+
