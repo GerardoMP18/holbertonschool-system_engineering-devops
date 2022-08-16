@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Update package
+sudo apt update
+# Install nginx
+sudo apt install -y nginx
+# Pass phrase to my html
+sudo echo 'Hello World' | sudo tee /var/www/html/index.nginx-debian.html
+# redirect
+new_string="a location /redirect_me\n \t{ \n\t rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent; \n \t}"
+sudo sed -i "/server_name _;/$new_string" /etc/nginx/sites-available/default
+# Start nginx service
+sudo service nginx start
