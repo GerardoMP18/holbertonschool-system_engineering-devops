@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#Update Package
+sudo apt update
+sudo apt -y upgrade
+#Install haproxy
+sudo apt install -y haproxy
+#Configuration of my balancer
+front="$ a frontend web-frontend\n\tbind *:80\n\tmode http\n\tdefault_backend web-backend\n"
+backend="$ a backend web-backend\n\tbalance roundrobin\n\tserver 4461-web-01 34.226.205.91:80 check\n\tserver 4461-web-02 54.163.37.58:80 check"
+sudo sed -i "$front" /etc/haproxy/haproxy.cfg
+sudo sed -i "$backend" /etc/haproxy/haproxy.cfg
+#restarting service
+sudo service haproxy restart
