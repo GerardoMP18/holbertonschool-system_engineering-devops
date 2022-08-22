@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Update package
+sudo apt update
+# Install nginx
+sudo apt install -y nginx
+# Pass phrase to my html
+sudo echo 'Hello World' | sudo tee /var/www/html/index.nginx-debian.html
+# redirect
+new_string="a location /redirect_me\n \t{ \n\t rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent; \n \t}"
+sudo sed -i "/server_name _;/$new_string" /etc/nginx/sites-available/default
+# redirect a new page 404
+sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/404_page.html
+page_error="a error_page 404 /404_page.html;\n\tlocation = /404_page.html\n \t{ \n\t\t root /var/www/html;\n \t\t internal;\n \t}"
+sudo sed -i "/server_name _;/$page_error" /etc/nginx/sites-available/default
+# add header X-Served-By
+add_header="a add_header X-Served-By $HOSTNAME;"
+sudo sed -i "/server_name _;/$add_header" /etc/nginx/sites-available/default
+# Start nginx service
+sudo service nginx restart
