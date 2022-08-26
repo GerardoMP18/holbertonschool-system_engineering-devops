@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+my_function () {
+	echo -n "The subdomain $2 is a "
+	dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | awk 'NR>1{print $4 " record and points to "$5}'
+}
+
+if [ "$#" -eq 2 ];
+then
+	my_function $1 $2
+else
+	my_function $1 'www'	
+	my_function $1 'lb-01' 
+	my_function $1 'web-01'
+	my_function $1 'web-02'
+fi
