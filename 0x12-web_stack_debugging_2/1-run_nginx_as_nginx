@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+# script Run Nginx as Nginx
+
+# Elimination of the apache 2 process since it is listening to port 8080
+pkill -f apache2
+# Nginx should be listening to port 8080
+sudo sed -i " s/80/8080/g " /etc/nginx/sites-enabled/default
+# make permission changes to the file
+chown nginx:nginx /etc/nginx/nginx.conf
+chmod 700 /etc/nginx/nginx.conf
+# running nginx as nginx user
+sudo -u nginx service nginx start
