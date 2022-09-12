@@ -3,9 +3,8 @@
     returns information about his/her TODO list progress."""
 
 
-import sys
-from urllib import request
 import requests
+import sys
 
 
 if __name__ == "__main__":
