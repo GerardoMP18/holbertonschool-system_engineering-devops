@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" script to export data in the CSV format """
+""" script to export data in the JSON format """
 
 import json
 import requests
@@ -29,5 +29,5 @@ if __name__ == "__main__":
 
     listdataID = {sys.argv[1]: newList}
 
-    with open('{}.json'.format(sys.argv[1]), 'w') as json_file:
+    with open("{}.json".format(sys.argv[1]), "w") as json_file:
         json.dump(listdataID, json_file)
